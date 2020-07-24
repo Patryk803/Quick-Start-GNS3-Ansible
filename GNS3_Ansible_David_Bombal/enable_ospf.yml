@@ -1,0 +1,28 @@
+---
+## This playbook uses a group of devices which is defined in /etc/ansible/hosts
+
+
+- name: Manage GNS3 devices
+  hosts: [Cisco-Core]
+  gather_facts: false
+  connection: local
+
+  vars:
+    cli:
+      username: patryk
+      password: cisco
+      #transport: cli     ## Transport CLI is obsolete
+
+
+  tasks:
+    - name: enable ospf
+      ios_config:
+        provider: "{{ cli }}"
+        authorize: yes
+        parents: router ospf 1
+        lines:
+          - network 0.0.0.0 255.255.255.255 area 0
+
+      register: print_output
+
+    - debug: var=print_output

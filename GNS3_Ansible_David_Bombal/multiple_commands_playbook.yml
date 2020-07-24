@@ -1,0 +1,20 @@
+---
+## This playbook doesn't have a password so we would need to use:
+## ansible-playbook multiple_playbook.yml -u patryk -k to run it
+## to look for a specific ip: ansible-playbook multiple_playbook.yml -u patryk -k | grep "ok: \|1\.203"
+
+- name: show version and other user level commands
+  hosts: all
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: run multiple commands on remote nodes
+      ios_command:
+        commands:
+          - show version
+          - show ip int brief
+
+      register: print_output
+
+    - debug: var=print_output.stdout_lines

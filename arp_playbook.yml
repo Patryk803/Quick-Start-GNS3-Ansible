@@ -1,7 +1,7 @@
 ---
 ## This playbook doesn't have a password so we would need to use:
-## ansible-playbook Arp_playbook.yml -u patryk -k to run it
-## to look for a specific ip: ansible-playbook Arp_playbook.yml -u patryk -k | grep "ok: \|1\.203"
+## ansible-playbook arp_playbook.yml -u patryk -k to run it
+## to look for a specific ip: ansible-playbook arp_playbook.yml -u patryk -k | grep "ok: \|1\.203"
 
 - name: Get Arp information
   hosts: all
